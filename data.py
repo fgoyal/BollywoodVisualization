@@ -23,31 +23,26 @@ data = data.drop('Director', axis=1)
 unsplit = pd.DataFrame.copy(data, deep=True)
 unsplit['People'] = unsplit['People'].str.replace(',',' ')
 
-# # split People column by comma
-# data = data.join(data.People.str.split(',', expand=True))
-# data = data.drop('People', axis=1)
-#
-# # read in descending order
-# data = data.iloc[::-1]
+# list of names to look for
+names = ["amitabh", "bachchan"]
 
-# search for amitabh bachchan
-has_amitabh = unsplit['People'].str.contains('kajol')
-has_bachchan = unsplit['People'].str.contains('')
-has_amitabh1 = unsplit['People'].str.contains('shah')
-has_bachchan2 = unsplit['People'].str.contains('rukh')
-has_bachchan3 = unsplit['People'].str.contains('khan')
-filtered = unsplit[has_amitabh & has_bachchan & has_amitabh1 & has_bachchan2 & has_bachchan3]
+filtered = unsplit
+
+# loop through list and filter by names in list
+for name in names:
+    has_name = filtered['People'].str.contains(name)
+    filtered = filtered[has_name]
+
+plt.figure(figsize=(15, 5))
 
 # create year range
-years = pd.Series(range(1920,2018))
+years = pd.Series(range(1920, 2018))
 
 # get frequency counts and map to years
 frequency = filtered['Year'].value_counts()
 frequency = frequency.reindex(years, fill_value=0)
 
 # create graph
-# frequency.sort_index(axis=0, level=None, ascending=True, inplace=True, sort_remaining=True)
-plt.figure(figsize=(15, 5))
 ax = frequency.plot(kind='line', x='Year', y='Appearances')
 ax.set_xlabel("Year")
-ax.set_ylabel("Actor Appearances")
+ax.set_ylabel("Appearances")
