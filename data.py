@@ -23,8 +23,10 @@ data = data.drop('Director', axis=1)
 unsplit = pd.DataFrame.copy(data, deep=True)
 unsplit['People'] = unsplit['People'].str.replace(',',' ')
 
-# list of names to look for
-names = ["amitabh", "bachchan"]
+# gets list of names from user
+input_names = input("Enter the actors you want visualized, separated by a comma.")
+input_names = input_names.lower().replace(', ', " ")
+names = input_names.split()
 
 filtered = unsplit
 
