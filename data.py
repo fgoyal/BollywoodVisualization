@@ -35,7 +35,7 @@ for name in names:
     has_name = filtered['People'].str.contains(name)
     filtered = filtered[has_name]
 
-plt.figure(figsize=(15, 5))
+# plt.figure(figsize=(15, 5))
 
 # create year range
 years = pd.Series(range(1920, 2018))
@@ -45,6 +45,7 @@ frequency = filtered['Year'].value_counts()
 frequency = frequency.reindex(years, fill_value=0)
 
 # create graph
-ax = frequency.plot(kind='line', x='Year', y='Appearances')
+ax = frequency.plot(kind='line', x='Year', y='Appearances', title='Shahrukh Khan through the years')
 ax.set_xlabel("Year")
 ax.set_ylabel("Appearances")
+plt.show()
