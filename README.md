@@ -21,7 +21,11 @@ To include data for another column, like music directors, follow the directions 
 3) Now if you run `data.py` following the above instructions, it will also use the people from the new column.
 
 For example - 
+
 To add a column with the title 'MusicalDirectors', the code would be 
+
 `data['MusicalDirectors'] = data['MusicalDirectors'].str.replace(' ',',')
+
 data['People'] = data['Director'] + "," + data["Cast"] + "," + data["MusicalDirectors"]`
+
 and so on.
