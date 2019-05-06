@@ -25,6 +25,7 @@ unsplit['People'] = unsplit['People'].str.replace(',',' ')
 
 # gets list of names from user
 input_names = input("Enter the actors you want visualized, separated by a comma.")
+people_name = input_names.replace(', ', " and ")
 input_names = input_names.lower().replace(', ', " ")
 names = input_names.split()
 
@@ -45,7 +46,8 @@ frequency = filtered['Year'].value_counts()
 frequency = frequency.reindex(years, fill_value=0)
 
 # create graph
-ax = frequency.plot(kind='line', x='Year', y='Appearances', title='Shahrukh Khan through the years')
+title = people_name + ' through the years'
+ax = frequency.plot(kind='line', x='Year', y='Appearances', title=title )
 ax.set_xlabel("Year")
 ax.set_ylabel("Appearances")
 plt.show()
