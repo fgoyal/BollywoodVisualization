@@ -17,5 +17,11 @@ Visualization of different Bollywood actors based on the number of movies they a
 To include data for another column, like music directors, follow the directions below in the file `data.py`.
 
 1) Add the line `data['ColumnName'] = data['ColumnName'].str.replace(' ',',')` after line 12
-2) Replace line 13 - `data['People'] = data['Director'] + "," + data["Cast"]` - with `data['People'] = data['Director'] + "," + data["Cast"] + data["ColumnName"]`. Add any new columns to this line with a similar format.
+2) Add ` + "," + data["ColumnName"] ` to the end of line 13 - `data['People'] = data['Director'] + "," + data["Cast"]`. Add any new columns to this line with a similar format.
 3) Now if you run `data.py` following the above instructions, it will also use the people from the new column.
+
+For example - 
+To add a column with the title 'MusicalDirectors', the code would be 
+`data['MusicalDirectors'] = data['MusicalDirectors'].str.replace(' ',',')
+data['People'] = data['Director'] + "," + data["Cast"] + "," + data["MusicalDirectors"]`
+and so on.
