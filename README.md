@@ -23,9 +23,10 @@ To include data for another column, like music directors, follow the directions 
 For example - 
 
 To add a column with the title 'MusicalDirectors', the code would be 
+```
+data['MusicalDirectors'] = data['MusicalDirectors'].str.replace(' ',',')
 
-`data['MusicalDirectors'] = data['MusicalDirectors'].str.replace(' ',',')
-
-data['People'] = data['Director'] + "," + data["Cast"] + "," + data["MusicalDirectors"]`
+data['People'] = data['Director'] + "," + data["Cast"] + "," + data["MusicalDirectors"]
+```
 
 and so on.
